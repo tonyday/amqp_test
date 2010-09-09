@@ -15,10 +15,12 @@ AMQP.start do
   q = MQ.queue('qname')
 
   n = 0
-  q.subscribe do |msg|
+  q.subscribe(:ack => true) do |header, body|
+#  q.subscribe() do |msg|
     n += 1
     print "#{n} "
-    File.open(foo, 'a') { |file| file.puts "#{n}: #{msg}" } if msg
+    File.open(foo, 'a') { |file| file.puts "#{n}: #{body}" } if body
+#    header.ack
   end
 
 end
