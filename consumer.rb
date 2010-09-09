@@ -21,6 +21,7 @@ AMQP.start do
     print "#{n} "
     File.open(foo, 'a') { |file| file.puts "#{n}: #{body}" } if body
     # If we do not ack the message it will not be purged from the queue
+    # blah blah blah
 #    header.ack
   end
 
